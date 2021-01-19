@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Bank Manager</title>
+<style>
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+table {
+  margin-left: auto; 
+  margin-right: auto;
+}
+th, td {
+  text-align: left;
+  padding: 10px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+</head>
+<body>
+<div align="center">
+    <h1>Bank List</h1>
+    <a href="new">Create New Account</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Bank ID</th>
+                <th>Bank</th>
+                <th>Credit Card Count</th>
+                <th>Debit Card Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="bank : ${listBanks}">
+            	<td th:text="${bank.id}">Bank ID</td>
+                <td th:text="${bank.name}">Bank</td>
+                <td th:text="${bank.credit}">Credit Card Count</td>
+                <td th:text="${bank.debit}">Debit Card Count</td>
+              
+                <td>
+                	<a th:href="@{'/edit/' + ${bank.id}}">Edit</a>
+                	&nbsp;&nbsp;&nbsp;
+                	<a th:href="@{'/delete/' + ${bank.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+</body>
+</html>
